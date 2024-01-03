@@ -1,4 +1,4 @@
-# <span style="color:red"기존 네이버클라우드 서버의 기간만료로 인해 AWS서버로 변경함</span>
+# <span style="color:red">기존 네이버클라우드 서버의 기간만료로 인해 AWS서버로 변경함</span>
 # join-now
 프로젝트 팀원 매칭 사이트
 
