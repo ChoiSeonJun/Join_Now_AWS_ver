@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CommentMapper">
+
+	<insert id="commentAdd" parameterType="CommentDTO">
+		insert into comment (postNo,content, writer, nickname)
+		values (#{postNo},#{content},#{writer},#{nickname})
+	</insert>
+
+	<select id="commentListbyNo" parameterType="int" resultType="CommentDTO">
+		select *
+		from comment
+		where postNo=#{postNo}
+	</select>
+	
+	<select id="commentListbyCno" parameterType="int" resultType="CommentDTO">
+		select *
+		from comment
+		where commentNo=#{commentNo}
+	</select>
+	
+	<update id="commentUpdate" parameterType="CommentDTO">
+		update comment
+		set content=#{content}
+		where commentNo=#{commentNo}
+	</update>
+	
+	<delete id="commentDelete" parameterType="int">
+		delete from comment
+		where commentNo=#{commentNo}
+	</delete>
+	
+</mapper>
+
+

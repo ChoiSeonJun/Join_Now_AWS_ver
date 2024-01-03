@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style customizer-hide" dir="ltr" xmlns:th="http://www.thymeleaf.org" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-no-customizer">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+<title>test</title>
+
+<meta name="description" content="" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" th:href="@{/assets/img/favicon/favicon.ico}" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<script>
+    $(document).ready(function() {
+        $("#submit").click(function(e) {
+            e.preventDefault();
+
+            // 사용자가 작성한 데이터 가져오기
+            var title = $("#title").val();
+            var content = $("#content").val();
+
+            // 데이터를 JSON 형식으로 생성
+            var postData = {
+                title: title,
+                content: content
+            };
+
+            // 서버로 AJAX 요청 보내기
+            $.ajax({
+                type: "POST",
+                url: "/post",
+                contentType: "application/json",
+                data: JSON.stringify(postData),
+                success: function(response) {
+                    // 성공 시 처리
+                    console.log(response);
+                    // 여기에서 페이지 리로드 또는 다른 작업 수행
+                },
+                error: function(error) {
+                    // 실패 시 처리
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+</head>
+
+<body>
+
+	<header th:replace="fragments/header :: header"></header>
+
+	<div>
+	<div class="container mt-5">
+        <h3>질문 게시판</h3>
+
+        <!-- 게시물 작성 폼 -->
+        <form th:action="@{/question/write/do}" method="post">
+            <div class="form-group">
+                <label for="title">제목:</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="content">내용:</label>
+                <textarea class="form-control" id="content" name="content" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">작성</button>
+        </form>
+    </div>
+	</div>
+
+
+	<footer th:replace="fragments/footer :: footer"></footer>
+
+	<!-- Core JS -->
+	<!-- build:js assets/vendor/js/core.js -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

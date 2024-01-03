@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="UserMapper">
+
+ 	<select id="idCheck" parameterType="string" 
+ 	  resultType="User">
+ 	  select *
+ 	  from User
+ 	  where username = #{username}
+ 	</select>
+ 	
+ 	<select id="selectAll" parameterType="string" 
+ 	  resultType="UserInfoDTO">
+ 	  select *
+ 	  from User
+ 	  where username = #{username}
+ 	</select>
+ 	
+ 	<select id="selectAllById" parameterType="int" 
+ 	  resultType="UserInfoDTO">
+ 	  select *
+ 	  from User
+ 	  where id = #{id}
+ 	</select>
+ 	
+ 	<update id="updateNickname" parameterType="UserInfoDTO">
+ 		update User
+ 		set nickname=#{username}
+ 		where id=#{id}
+ 	</update>
+ 	
+</mapper>
+
+
+

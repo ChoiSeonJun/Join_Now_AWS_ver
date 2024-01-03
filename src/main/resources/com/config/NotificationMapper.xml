@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="NotificationMapper">
+ 	
+ 	<insert id="notificationAdd" parameterType="NotificationDTO">
+ 		insert into notification(sendId, receiveId, content, postId)
+ 		values(#{sendId}, #{receiveId}, #{content}, #{postId})
+ 	</insert>
+ 	 	
+ 	<select id="selectListById" parameterType="int" resultType="NotificationDTO">
+ 		select *
+ 		from notification
+ 		where receiveId=#{receiveId}
+ 	</select>
+ 	
+ 	<update id="updateIsRead" parameterType="int">
+ 		update notification
+		set isRead = true
+		where notificationId=#{notificationId}
+ 	</update>
+   
+   	<delete id="deleteAll" parameterType="int">
+   		delete from notification
+		where receiveId=#{receiveId}   	
+   	</delete>
+   
+</mapper>
+
+

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" class="light-style layout-menu-fixed layout-compact" dir="ltr"
+    data-theme="theme-default" data-template="vertical-menu-template-free">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <!--     <title>Joinow</title> -->
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="resources/static/assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet" />
+
+    <link rel="stylesheet" href="resources/static/assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" th:href="@{resources/static/assets/vendor/css/core.css}"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" th:href="@{resources/static/assets/vendor/css/theme-default.css}"
+        class="template-customizer-theme-css" />
+    <link rel="stylesheet" th:href="@{resources/static/assets/css/demo.css}" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="resources/static/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="resources/static/assets/vendor/libs/apex-charts/apex-charts.css" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="resources/static/assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="resources/static/assets/js/config.js"></script>
+</head>
+
+<body>
+    <!-- Layout wrapper -->
+	<div class="layout-wrapper layout-content-navbar">
+		<div class="layout-container">
+			<!-- Menu -->
+
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a th:href="@{main}" class="app-brand-link"> <span class="app-brand-logo demo"> <svg width="25"
+                                viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <defs>
+                                    <path
+                                        d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
+                                        id="path-1"></path>
+                                    <path
+                                        d="M5.47320593,6.00457225 C4.05321814,8.216144 4.36334763,10.0722806 6.40359441,11.5729822 C8.61520715,12.571656 10.0999176,13.2171421 10.8577257,13.5094407 L15.5088241,14.433041 L18.6192054,7.984237 C15.5364148,3.11535317 13.9273018,0.573395879 13.7918663,0.358365126 C13.5790555,0.511491653 10.8061687,2.3935607 5.47320593,6.00457225 Z"
+                                        id="path-3"></path>
+                                    <path
+                                        d="M7.50063644,21.2294429 L12.3234468,23.3159332 C14.1688022,24.7579751 14.397098,26.4880487 13.008334,28.506154 C11.6195701,30.5242593 10.3099883,31.790241 9.07958868,32.3040991 C5.78142938,33.4346997 4.13234973,34 4.13234973,34 C4.13234973,34 2.75489982,33.0538207 2.37032616e-14,31.1614621 C-0.55822714,27.8186216 -0.55822714,26.0572515 -4.05231404e-15,25.8773518 C0.83734071,25.6075023 2.77988457,22.8248993 3.3049379,22.52991 C3.65497346,22.3332504 5.05353963,21.8997614 7.50063644,21.2294429 Z"
+                                        id="path-4"></path>
+                                    <path
+                                        d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
+                                        id="path-5"></path>
+                                </defs>
+                                <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
+                                        <g id="Icon" transform="translate(27.000000, 15.000000)">
+                                            <g id="Mask" transform="translate(0.000000, 8.000000)">
+                                                <mask id="mask-2" fill="white">
+                                                    <use xlink:href="#path-1"></use>
+                                                </mask>
+                                                <use fill="#696cff" xlink:href="#path-1"></use>
+                                                <g id="Path-3" mask="url(#mask-2)">
+                                                    <use fill="#696cff" xlink:href="#path-3"></use>
+                                                    <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
+                                                </g>
+                                                <g id="Path-4" mask="url(#mask-2)">
+                                                    <use fill="#696cff" xlink:href="#path-4"></use>
+                                                    <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
+                                                </g>
+                                            </g>
+                                            <g id="Triangle"
+                                                transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) ">
+                                                <use fill="#696cff" xlink:href="#path-5"></use>
+                                                <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </span> <span class="app-brand-text demo menu-text fw-bold ms-2">Joinow</span>
+                    </a> <a href="javascript:void(0);"
+                        class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                    </a>
+                </div>
+
+                <div class="menu-inner-shadow"></div>
+
+                <ul class="menu-inner py-1">
+					<!-- Dashboards -->
+                    <li class="menu-item"><a th:href="@{main}" class="menu-link ">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                style="fill: rgb(158, 154, 154);">
+                                <path
+                                    d="m12.223 11.641-.223.22-.224-.22a2.224 2.224 0 0 0-3.125 0 2.13 2.13 0 0 0 0 3.07L12 18l3.349-3.289a2.13 2.13 0 0 0 0-3.07 2.225 2.225 0 0 0-3.126 0z">
+                                </path>
+                                <path
+                                    d="m21.707 11.293-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707zM18.001 20H6v-9.585l6-6 6 6V15l.001 5z">
+                                </path>
+                            </svg>
+                            <div data-i18n="Dashboards">&nbsp Main</div>
+
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a
+                          th:href="@{mypage}"
+                          class="menu-link">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(158, 154, 154, 1);"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 2c3.213 0 5.982 1.908 7.254 4.648a7.8 7.8 0 0 1-.895-.498c-.409-.258-.873-.551-1.46-.772-.669-.255-1.4-.378-2.234-.378s-1.565.123-2.234.377c-.587.223-1.051.516-1.472.781-.378.237-.703.443-1.103.594C9.41 8.921 8.926 9 8.33 9c-.595 0-1.079-.079-1.524-.248-.4-.151-.728-.358-1.106-.598-.161-.101-.34-.208-.52-.313C6.587 5.542 9.113 4 12 4zm0 16c-4.411 0-8-3.589-8-8 0-.81.123-1.59.348-2.327.094.058.185.11.283.173.411.26.876.554 1.466.776.669.255 1.399.378 2.233.378.833 0 1.564-.123 2.235-.377.587-.223 1.051-.516 1.472-.781.378-.237.703-.443 1.103-.595.445-.168.929-.247 1.525-.247s1.08.079 1.525.248c.399.15.725.356 1.114.602.409.258.873.551 1.46.773.363.138.748.229 1.153.291.049.357.083.717.083 1.086 0 4.411-3.589 8-8 8z"></path><circle cx="8.5" cy="13.5" r="1.5"></circle><circle cx="15.5" cy="13.5" r="1.5"></circle></svg>
+                          <div data-i18n="Email">&nbsp My Page</div>
+                        </a>
+                      </li>
+
+                        </a></li>
+
+                </ul>
+            </aside>
+            <!-- / Menu -->
+
+			<!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+
+                <nav class=" container-xxl navbar  align-items-end bg-navbar-theme justify-content-end"
+                    id="layout-navbar">
+
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <!-- User -->
+                        <th:block th:switch="${session.loginInfo}">
+                            <th:block th:case="null">
+                                <li class="nav-item navbar-dropdown dropdown-user dropdown list-unstyled">
+                                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                                        data-bs-toggle="dropdown">
+                                        <div class="avatar">
+                                            <img th:src="@{'https://joinnow.s3.ap-northeast-2.amazonaws.com/' + ${session.loginInfo.username} + '.jpg'}"
+                                                onerror="this.onerror=null; this.src='https://joinnow.s3.ap-northeast-2.amazonaws.com/Join_now_default_profile.jpg';"
+                                                alt class="w-px-40 h-90 rounded-circle" />
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" th:href="@{login}"> <i
+                                                    class="bx bx-power-off me-2"></i> <span class="align-middle">Log
+                                                    In</span>
+                                            </a></li>
+                                    </ul>
+                                </li>
+                            </th:block>
+                            <th:block th:case="*">
+                                <li class="nav-item navbar-dropdown dropdown-user dropdown list-unstyled">
+                                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                                        data-bs-toggle="dropdown">
+                                        <div class="avatar avatar-online">
+
+
+
+
+                                            <img th:src="@{'https://joinnow.s3.ap-northeast-2.amazonaws.com/' + ${session.loginInfo.username} + '.jpg'}"
+                                            onerror="this.onerror=null; this.src='https://joinnow.s3.ap-northeast-2.amazonaws.com/Join_now_default_profile.jpg';"
+
+
+                                                alt class="w-px-40 h-90 rounded-circle" />
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#">
+                                                <div class="d-flex">
+                                                    <div class="flex-shrink-0 me-3">
+                                                        <div class="avatar avatar-online">
+
+                                                            <img th:src="@{'https://joinnow.s3.ap-northeast-2.amazonaws.com/' + ${session.loginInfo.username} + '.jpg'}"
+																onerror="this.onerror=null; this.src='https://joinnow.s3.ap-northeast-2.amazonaws.com/Join_now_default_profile.jpg';"
+
+
+
+                                                                alt class="w-px-40 h-90 rounded-circle" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <span class="fw-medium d-block" th:text=${session.loginInfo.nickname}></span> <small
+                                                            class="text-muted">Online</small>
+                                                    </div>
+                                                </div>
+                                            </a></li>
+                                        <li>
+                                            <div class="dropdown-divider"></div>
+                                        </li>
+                                        <li><a class="dropdown-item" th:href="@{mypage}"> <i
+                                                    class="bx bx-user me-2"></i> <span class="align-middle">My
+                                                    Page</span>
+                                            </a></li>
+                                        <li>
+                                            <div class="dropdown-divider"></div>
+                                        </li>
+                                        <li><a class="dropdown-item" th:href="@{logout}"> <i
+                                                    class="bx bx-power-off me-2"></i> <span class="align-middle">Log
+                                                    Out</span>
+                                            </a></li>
+                                    </ul>
+                                </li>
+                            </th:block>
+                        </th:block>
+                        <!--/ User -->
+                        </ul>
+                    </div>
+                </nav>
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                		
+                		<div class="container-xxl flex-grow-1 container-p-y">
+                		<h3 class="py-3 mb-4">지원 요청 관리</h3>
+                		<div class="col-md-12">
+								<ul class="nav nav-pills flex-column flex-md-row mb-3">
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/mypage}"><i class="bx bx-user me-1"></i>
+											정보</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/notification}"><i
+											class="bx bx-bell me-1"></i> 알림</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/writeList}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#545454}</style><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+										&nbsp; 나의모집</a></li>
+								    <li class="nav-item"><a class="nav-link active" th:href="@{/acceptPage}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#6e6e6e}</style><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+								    &nbsp; 지원자</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/applyPage}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#707070}</style><path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/></svg>
+										&nbsp; 나의신청</a></li>
+									<li class="nav-item"><a class="nav-link"
+										th:href="@{/teamList}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#6e6e6e}</style><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm177.6 62.1C192.8 334.5 218.8 352 256 352s63.2-17.5 78.4-33.9c9-9.7 24.2-10.4 33.9-1.4s10.4 24.2 1.4 33.9c-22 23.8-60 49.4-113.6 49.4s-91.7-25.5-113.6-49.4c-9-9.7-8.4-24.9 1.4-33.9s24.9-8.4 33.9 1.4zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+										&nbsp; 팀</a></li>	
+										
+								</ul>
+						</div>
+                		
+                		<!-- table -->
+                		<div class="container-xxl card">
+							<div class="table-card-table" style="margin-top:4px;">
+							  <table class="table table-striped">
+							    <thead>
+							      <tr>
+							        <th>공고 정보</th>
+				                    <th>신청자</th>
+				                    <th>작성자</th>
+				                    <th>신청 날짜</th>
+				                    <th></th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							     <th:block th:each="acceptPrintDTO : ${acceptPrintList}">
+							      <tr>
+							        <td> 
+										<a class="fw-medium" style="text-decoration: none; color: #697A8D;" th:href="'retrieve?postNo='+${acceptPrintDTO.postDTO.postNo}" th:text="${acceptPrintDTO.postDTO.title}"></a>							        
+							        </td>
+							        <td>
+										<a class="fw-medium" style="text-decoration: none; color: #697A8D;" th:href="'applyRetrieve?applyNo='+${acceptPrintDTO.acceptDTO.applyNo}" th:text="${acceptPrintDTO.applyUserInfoDTO.nickname}"></a>
+									</td>
+							        <td th:text="${acceptPrintDTO.acceptUserInfoDTO.nickname}"></td>
+							        
+							        <td th:text="${acceptPrintDTO.applyDTO.date}"></td>
+							        
+							        <td>
+							        	<form action="acceptYN" method="get">
+			                                <input type="hidden" th:value="${acceptPrintDTO.acceptDTO.applyNo}" name="applyNo">
+			                                <input type="hidden" th:value="${acceptPrintDTO.acceptDTO.applicationNo}" name="applicationNo">
+			                                <input type="hidden" th:value="${acceptPrintDTO.applyUserInfoDTO.id}" name="applyUserId">
+			                                <input type="hidden" th:value="${acceptPrintDTO.postDTO.postNo}" name="postNo">
+			                              	<input type="submit" value="수락" name="YN" class="btn rounded-pill me-2 btn-outline-primary">
+			                                <input type="submit" value="거절" name="YN" class="btn rounded-pill me-2 btn-outline-secondary">
+			                            </form>
+							        </td>
+							      </tr>
+							     </th:block>
+							     
+							    </tbody>
+							  </table>
+							</div>
+						</div>
+                		<!-- /table -->
+                		</div>
+
+                        <div class="content-backdrop fade"></div>
+                    </div>
+                    <!-- Content wrapper -->
+                </div>
+                <!-- / Layout page -->
+            </div>
+
+            <!-- Overlay -->
+            <div class="layout-overlay layout-menu-toggle"></div>
+        </div>
+        <!-- / Layout wrapper -->
+
+
+        <!-- Core JS -->
+        <!-- build:js assets/vendor/js/core.js -->
+
+        <script src="resources/static/assets/vendor/libs/jquery/jquery.js"></script>
+        <script src="resources/static/assets/vendor/libs/popper/popper.js"></script>
+        <script src="resources/static/assets/vendor/js/bootstrap.js"></script>
+        <script src="resources/static/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+        <script src="resources/static/assets/vendor/js/menu.js"></script>
+
+        <!-- endbuild -->
+
+        <!-- Vendors JS -->
+        <script src="resources/static/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+        <!-- Main JS -->
+        <script src="resources/static/assets/js/main.js"></script>
+
+        <!-- Page JS -->
+        <script src="resources/static/assets/js/dashboards-analytics.js"></script>
+
+        <!-- Place this tag in your head or just before your close body tag. -->
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

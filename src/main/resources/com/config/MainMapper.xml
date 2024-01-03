@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MainMapper">
+ 
+   <select id="selectList" resultType="PostDTO">
+	    select *
+		from post
+		WHERE deadline >= CURDATE();
+   </select>
+   
+   <select id="totalCount" resultType="int">
+	     select count(*)
+	     from post
+   </select>
+   
+   <select id="totalCountTitle" resultType="int">
+	     select count(*)
+	     from post
+	     where title LIKE CONCAT('%', #{keyword}, '%')
+   </select>
+      
+   <select id="searchTitle" resultType="PostDTO">
+	    select *
+		from post
+		where deadline >= CURDATE() and title LIKE CONCAT('%', #{keyword}, '%')
+   </select>
+   
+</mapper>
+
+

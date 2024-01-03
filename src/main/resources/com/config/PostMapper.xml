@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PostMapper">
+
+	<select id="postList" resultType="PostDTO">
+		select postNo,title,userid,postDate,viewCount,nickname
+		from post
+	</select>
+
+	<insert id="postAdd" parameterType="PostDTO">
+		insert into post ( studyType, title, onoff, region, 
+		content, contact,deadline,startDate, userId, postDate, closing, viewCount )
+		values (
+		#{studyType},#{title},#{onoff},#{region},#{content},#{contact},#{deadline},#{startDate},#{userid},#{postDate}
+		,#{closing},#{viewCount})
+	</insert>
+
+	<select id="postListbyNo" resultType="PostDTO">
+		select
+		postNo,title,studyType,onoff,region,content,startDate,deadline,contact,viewCount,userid,nickname
+		from post
+		where postNo=#{postNo}
+	</select>
+	
+	<select id="postListbyId" resultType="PostDTO" parameterType="int">
+		select *
+		from post
+		where userId=#{userId}
+	</select>
+
+	<update id="postUpdate" parameterType="PostDTO">
+		update post
+		set
+		studyType=#{studyType},title=#{title},onoff=#{onoff},region=#{region},content=#{content},contact=#{contact}
+		where postNo=#{postNo} and userid=#{userid}
+	</update>
+
+	<update id="viewCount" parameterType="int">
+		update post
+		set viewCount = viewCount + 1
+		where postNo = #{postNo}
+	</update>
+	
+	<delete id="postDelete" parameterType="hashmap">
+		delete from post
+		where postNo=#{postNo} and userid=#{userid}
+	</delete>
+	
+</mapper>
+
+

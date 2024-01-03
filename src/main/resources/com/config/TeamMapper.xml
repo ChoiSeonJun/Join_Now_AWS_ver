@@ -1,0 +1,66 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TeamMapper">
+
+	<insert id="teamAdd" parameterType="TeamDTO" useGeneratedKeys="true" keyProperty="teamId">
+		insert into team(postNo, userId, teamName)
+		values(#{postNo}, #{userId}, #{teamName})
+	</insert>
+	
+	<insert id="teamMemberAdd" parameterType="TeamMemberDTO">
+		insert into teammember(teamId, userId)
+		values (#{teamId}, #{userId})
+	</insert>
+	
+	<select id="selectByPostNo" parameterType="int" resultType="TeamDTO">
+		select *
+		from team
+		where postNo = #{postNo}
+	</select>
+	
+	<select id="selectByTeamId" parameterType="int" resultType="TeamDTO">
+		select *
+		from team
+		where teamId = #{teamId} 
+	</select>
+	
+	<select id="selectTeamIdByUserId" parameterType="int" resultType="int">
+		select teamId
+		from teammember
+		where userId = #{userId}
+	</select>
+	
+	<select id="selectMemberListByTeamId" parameterType="int" resultType="TeamMemberDTO">
+		select *
+		from teammember
+		where teamId = #{teamId}	
+	</select>
+	
+	<delete id="teamMemberDel" parameterType="int">
+		delete from teammember
+		where userId=#{userId}
+	</delete>
+	
+	<!-- 팀 정보 수정  -->
+	<update id="updateTeamInfoById" parameterType="teamDTO">
+		update team
+		set	teamSubject = #{teamSubject}, teamIntro = #{teamIntro}, teamPlan = #{teamPlan}, period = #{period}
+		where teamId = #{teamId}
+	</update>
+	
+	<!-- 팀 삭제 -->
+	<delete id="deleteTeamByteamId" parameterType="int">
+		delete from team
+		where teamId = #{teamId} 
+	</delete>
+	
+	<!-- 팀원 삭제 -->
+	<delete id="deleteTeamMemberByteamId" parameterType="int">
+		delete from teammember
+		where teamId = #{teamId}
+	</delete>
+</mapper>
+
+

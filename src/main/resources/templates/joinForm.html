@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원가입 페이지</title>
+<style>
+body {
+	background-color: #fff; /* Light gray background color */
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	color: #2CA40E; /* Green text color */
+	font-size: 24px;
+	margin: 20px;
+}
+
+/* Add CSS for the registration form */
+form {
+	background-color: #fff; /* White background for the form */
+	padding: 20px;
+	border: 2.5px solid #DCDCDC;
+	margin: 40px auto; /* Increased margin to center the form */
+	max-width: 600px; /* Increased max-width for a larger form */
+	border-radius: 10px;
+	box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+	width: 50%; /* Decreased width to make text boxes shorter */
+	padding: 10px;
+	margin: 5px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #F5F5F5;
+	color: #444;
+}
+
+button {
+	width: 59%;
+	padding: 6px 2px;
+	margin: 10px 0;
+	background-color: #2CA40E; /* Green button color */
+	color: #fff; /* White text color for buttons */
+	border: none;
+	border-radius: 5px;
+	font-size: 1em;
+}
+
+button#idDupulicatedcheck {
+	background-color: #ccc;
+	/* Gray background color for the duplicate check button */
+	color: #000;
+	/* Black text color for the duplicate check button */
+}
+
+span {
+	color: #ff0000; /* Red text color for messages */
+}
+
+/* Center align the icons */
+section.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-nav {
+	    display: grid;
+	    grid-template-columns: auto auto;
+	    justify-content: space-between;
+	    height: 60px;
+	    border: 0;
+	    box-shadow: 0.5px 0.5px 0px 0.5px #8080809a
+	}
+	
+	.logo-container {
+		margin: 10px 0 0 20%;
+	}
+</style>
+</head>
+<body>
+	<header>
+		<nav class="header-nav">
+			<!-- 로고 부분 -->
+			<div class="logo-container">
+				<a th:href="@{/main}">
+					<img src="https://joinnow.s3.ap-northeast-2.amazonaws.com/Join_now_default_profile.jpg" alt="로고">
+				</a>
+			</div>
+		</nav>
+	</header>
+	<form action="/app/joinProc" method="post">
+	<h2 style="text-align: center; color: #000000; font-size: 24px; margin-bottom: 20px; margin-top: 0px;">Sign Up</h2>
+		<div style="display: flex; align-items: center;">
+			*아이디: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="username" placeholder="Username" id="username" style="width: 30%;" />
+			&nbsp;<button id="idDupulicatedcheck" style="width: 20%;">중복확인</button><span id="result">
+		</div><br />
+		*비밀번호: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password" placeholder="Password" id="password" /><br />
+		*비밀번호확인: <input type="password" name="password2" id="password2" placeholder="Confirm password"><span id="idcheck"></span><br /> 
+		*이메일: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="email" name="email" placeholder="Email" /><br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button style="width: 30%; padding: 10px 2px; background-color: #585858; color: white; border: none; border-radius: 5px; font-size: 1em;">Sign Up</button>
+	</form>
+	
+	<hr style="width: 450px; margin: 0 auto;">
+
+	<section class="text-center" style="margin-top: 20px;">
+		<div class="my-3">
+			<a href="/app/oauth2/authorization/google" style="padding: 0 5px;">
+				<img th:src="@{images/google.png}" width="45" height="45" />
+			</a> <a href="/app/oauth2/authorization/facebook" style="padding: 0 5px;">
+				<img th:src="@{images/Facebook.png}" width="45" height="45" />
+			</a> <a href="/app/oauth2/authorization/naver" style="padding: 0 5px;">
+				<img th:src="@{images/naver.png}" width="45" height="45" />
+			</a>
+		</div>
+	</section>
+	
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			// 비번일치 여부 확인
+			$("#password2").on("keyup", function() {
+				var password = $("#password").val();
+				var password2 = $("#password2").val();
+				var mesg = "비번 일치";
+				if (password != password2) {
+					mesg = "비번 불일치"
+				}
+
+				$("#idcheck").text(mesg);
+			});
+
+			// id 중복체크
+			$("#idDupulicatedcheck").on("click", function() {
+				// submit 비활성
+				event.preventDefault();
+				// ajax 연동
+				$.ajax({
+					type : "get",
+					url : "UserIdCheckServlet",
+					data : {
+						username : $("#username").val()
+					}, // 요청코드
+					dataType : 'text', //  응답받은 데이터 타입
+					success : function(data, status, xhr) {
+						console.log(data);
+						$("#result").text(data);
+					},
+					error : function(xhr, status, error) {
+						console.log("error 발생");
+					}
+				});
+			});
+
+			// 모든 회원정보가 입력된후  submit 되도록 체크하기
+		});
+	</script>
+</body>
+</html>

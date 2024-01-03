@@ -1,0 +1,128 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ProjTeamMapper">
+
+	<!-- <insert id="insertSch" parameterType="ScheduleDTO"> insert into calendar 
+		(calendarId, title, startDate, endDate, color) values () </insert> -->
+
+
+	<!-- 팀 정보 -->
+	<!-- <select id="selectById"> </select> -->
+
+
+	<!-- 일정표 -->
+	<select id="selectAi" resultType="int">
+		SELECT AUTO_INCREMENT
+		FROM information_schema.tables
+		WHERE table_name = 'schedule'
+		AND table_schema = DATABASE( )
+	</select>
+	
+	<select id="selectIdById" resultType="int" parameterType="int">
+		select id
+		from schedule
+		where id = #{id}
+	</select>
+
+	<select id="selectAllEventbyId" resultType="ScheduleDTO"
+		parameterType="int">
+		select id, teamId, title, start, end, backgroundColor
+		from schedule
+		where teamId = #{teamId}
+	</select>
+
+	<insert id="insertEvent" parameterType="hashmap">
+		insert into schedule (teamId, title, start, end, backgroundColor)
+		values (#{teamId}, #{scheduleDTO.title}, #{scheduleDTO.start}, 
+				#{scheduleDTO.end}, #{scheduleDTO.backgroundColor})
+	</insert>
+
+	<update id="updateEvent" parameterType="ScheduleDTO">
+		update schedule
+		set title = #{title}, start = #{start},
+		end = #{end}, backgroundColor = #{backgroundColor}
+		where id = #{id}
+	</update>
+
+	<delete id="deleteEvent" parameterType="ScheduleDTO">
+		delete from schedule
+		where id = #{id}
+	</delete>
+
+
+	<!-- 회의록 -->
+	<select id="getTeamIdByUserId" parameterType="hashmap"
+		resultType="Integer">
+		select teamId
+		from team
+		where userId = #{userId}
+	</select>
+
+	<select id="totalCount" resultType="int">
+		select count(*)
+		from meeting
+	</select>
+
+	<select id="selectAllPostById" resultType="MeetingDTO"
+		parameterType="hashmap">
+		select meetingNo, teamId, writer, title, content, createdDate
+		from meeting
+		where teamId = #{teamId}
+	</select>
+
+	<insert id="addMeetingPost" parameterType="MeetingDTO">
+		insert into meeting (teamId, writer, title, content)
+		values (#{teamId}, #{writer}, #{title}, #{content})
+	</insert>
+
+	<select id="selectOneById" resultType="MeetingDTO"
+		parameterType="HashMap">
+		select meetingNo, teamId, writer, title, content, createdDate
+		from meeting
+		where teamId = #{teamId} and meetingNo = #{meetingNo}
+	</select>
+
+	<delete id="deleteOneById" parameterType="HashMap">
+		delete from meeting
+		where meetingNo = #{meetingNo} and teamId = #{teamId}
+	</delete>
+
+	<update id="updateMeetingById" parameterType="HashMap">
+		update meeting
+		set title = #{meetingDTO.title}, content = #{meetingDTO.content}
+		where meetingNo = #{meetingNo} and teamId = #{teamId}
+	</update>
+	
+	<!-- 검색 -->
+	<select id="searchAll" resultType="MeetingDTO" parameterType="HashMap">
+		select meetingNo, writer, title, createdDate
+		from meeting
+		where teamId = #{teamId} and (
+                           title LIKE CONCAT('%', #{keyword}, '%')
+                        OR content LIKE CONCAT('%', #{keyword}, '%')
+                        OR writer LIKE CONCAT('%', #{keyword}, '%')
+                    )
+	</select>
+	
+	<select id="searchTitle" resultType="MeetingDTO" parameterType="HashMap">
+		select meetingNo, writer, title, createdDate
+		from meeting
+		where teamId = #{teamId} and title LIKE CONCAT('%', #{keyword}, '%')
+	</select>
+	
+	<select id="searchContent" resultType="MeetingDTO" parameterType="HashMap">
+		select meetingNo, writer, title, createdDate
+		from meeting
+		where teamId = #{teamId} and content LIKE CONCAT('%', #{keyword}, '%')
+	</select>
+
+
+	<!-- 공고 신청 관리 -->
+
+
+
+</mapper>
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MyPageMapper">
+  
+   <select id="mypageList" resultType="MyPgDTO" parameterType="int">
+   	select id, email, nickname, phone, pofoLink, skills, tools, intro
+   	 from User
+   </select>
+   
+   <select id="mypageInfo" resultType="MyPgDTO" parameterType="int">
+   	select id, email, nickname, phone, pofoLink, skills, tools, intro
+   	 from User
+   	where id=#{id} 
+   </select>
+   
+   <insert id="mypageInsert" parameterType="MyPgDTO">
+   	insert into User(email, nickname, phone, pofoLink, skills, tools, intro)
+   	values(#{email}, #{nickname}, #{phone}, #{pofoLink}, #{skills}, #{tools}, #{intro})
+   </insert>
+   
+   <update id="mypageUpdate" parameterType="MyPgDTO">
+   	update User
+   	set id=#{id}, email=#{email}, nickname=#{nickname}, phone=#{phone},
+   		 pofoLink=#{pofolLink}, skills=#{skills}, tools=#{tools}, intro=#{intro}
+   	 where id=#{id} 
+   </update>
+   
+   
+
+   
+</mapper>
+
+

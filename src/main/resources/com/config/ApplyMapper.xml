@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ApplyMapper">
+
+	
+
+	<insert id="applyAdd" parameterType="ApplyDTO" useGeneratedKeys="true" keyProperty="applyNo">
+		insert into apply ( postNo,applyNo,applyType, skills, contact, content, userid
+		)
+		values (
+		#{postNo},#{applyNo},#{applyType},#{skills},#{contact},#{content},#{userid}
+		)
+	</insert>
+	
+	<delete id="applyDel" parameterType="int">
+		delete from apply
+		where applyNo = #{applyNo}
+	</delete>
+
+	<select id="selectListApplyByIdAndPostNo" parameterType="hashmap" resultType="ApplyDTO">
+		select *
+		from apply
+		where postNo=#{postNo} and userid=#{userid}		
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="ApplyDTO">
+		select *
+		from apply
+		where applyNo = #{applyNo}
+	</select>
+	
+</mapper>
+
+
